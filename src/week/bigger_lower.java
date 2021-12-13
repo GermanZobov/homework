@@ -5,13 +5,14 @@ import java.util.Scanner;
 
 public class bigger_lower
 {
+    static int temp_min;
+    static int temp_max;
+    static int x = 0;
     public static void main(String[] args)
     {
+
         int min;
-        int temp_min;
         int max;
-        int temp_max;
-        int x = 0;
 
         StringBuilder log = new StringBuilder();
         log.append("[");
@@ -32,32 +33,37 @@ public class bigger_lower
         if (min == max || min < 0 || max < 0 || min > max || max > 100) { throw new IllegalArgumentException(); }
         int unknown = rand(min, max);
         System.out.println("PLAY");
-        //input.nextLine();
         temp_max = max + 1;
         temp_min = min - 1;
-        int l = 0;
+
         while (true) {
            // l++;
             if(input.hasNextInt()) {x = input.nextInt();} else {System.out.println("Введите число!"); log.append((input.next())+", ");input.nextLine(); continue; }
             if (x >= temp_max) {
-                System.out.println("Уже было");
+                System.out.println("Вне диапазона");
                 log.append(x + ", ");
+                print();
                 continue;
             }
             if (x <= temp_min) {
-                System.out.println("Уже было");
+                System.out.println("Вне диапазона");
                 log.append(x + ", ");
+                print();
                 continue;
             }
-            if (x < temp_max && x > unknown) { temp_max = x; }
-            if (x > temp_min && x < unknown) { temp_min = x; }
+//            if (x < temp_max && x > unknown) { temp_max = x; }
+//            if (x > temp_min && x < unknown) { temp_min = x; }
             if (x < unknown) {
+                temp_min = x;
                 System.out.println("больше");
                 log.append(x + ", ");
+                print();
                 continue;
             } else if (x > unknown) {
+                temp_max = x;
                 System.out.println("меньше");
                 log.append(x + ", ");
+                print();
                 continue;
             } else {
                 System.out.println("угадано");
@@ -67,12 +73,15 @@ public class bigger_lower
         }
         System.out.println(log.toString());
     }
-
+    private static void print(){
+        System.out.println("Диапазон:["+(temp_min+1)+","+(temp_max-1)+"]");
+    }
     private static int rand(int min, int max)
     {
-        //int unknown = (int) Math.random() * ((max-min)+min);
+
         return (int) ((Math.random() * ((max - min) + 1)) + min);
     }
+
 }
 //[Переслано от iva n]
 //Напишите игровую JAVA – программу, которая отгадывает число по принципу – «больше – меньше»:
