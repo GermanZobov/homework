@@ -2,7 +2,7 @@ package week;
 
 import java.util.Arrays;
 import java.util.Scanner;
-
+//ПЕРЕПИСАТЬ на невключительно 0-100
 public class bigger_lower
 {
     static int temp_min;
@@ -10,7 +10,6 @@ public class bigger_lower
     static int x = 0;
     public static void main(String[] args)
     {
-
         int min;
         int max;
 
