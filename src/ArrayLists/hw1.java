@@ -1,5 +1,6 @@
 package ArrayLists;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.*;
 
@@ -8,6 +9,7 @@ public class hw1
     public static void main(String[] args)
     {
         Integer[] ints = {4,5,-6,4,5,3,4,2,4,5,7};
+        //V1
         ArrayList<Integer> ar =  new ArrayList<>(Arrays.asList(ints));
         Collections.sort(ar);
         StringBuilder out = new StringBuilder();
@@ -26,6 +28,15 @@ public class hw1
             if(ar.size()==0)break;
         }
         System.out.println(out);
+//V2
+        ArrayList<Integer> ar2 = new ArrayList<>(Arrays.asList(ints));
+        ArrayList<Integer> check = new ArrayList<>();
+        Collections.sort(ar2);
+        for (int k:ar2) {
+            if(check.contains(k))continue;
+            System.out.println(k + " - " + Collections.frequency(ar2, k));
+            check.add(k);
+        }
     }
 
 
